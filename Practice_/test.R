@@ -56,3 +56,26 @@ mpg %>%
 mpg %>% 
   group_by(manufacturer, drv) %>% 
   summarise(mean_city = mean(city))
+mpg %>% 
+  group_by(manufacturer) %>% 
+  filter(class == "suv") %>% 
+  mutate(tot = (city + highway) / 2) %>% 
+  summarise(mean_tot = mean(tot)) %>% 
+  arrange(desc(mean_tot)) %>% 
+  head(5)
+
+
+mpg %>% 
+  group_by(class) %>% 
+  summarise(mean_ct = mean(city)) %>% 
+  arrange(desc(mean_ct))
+mpg %>% 
+  group_by(class) %>% 
+  summarise(mean_hwy = mean(highway)) %>% 
+  arrange(desc(mean_hwy)) %>% 
+  head(3)
+mpg %>% 
+  group_by(manufacturer) %>% 
+  filter(class == "compact") %>% 
+  summarise(n = n()) %>% 
+  arrange(desc(n))
