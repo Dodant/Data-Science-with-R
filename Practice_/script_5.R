@@ -70,3 +70,4 @@ mpg$test <- ifelse(mpg$total >= 30, "A",
 head(mpg, 20)
 table(mpg$test)
 qplot(mpg$test)
+

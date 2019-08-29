@@ -35,3 +35,9 @@ midwest %>%
   arrange(popasian) %>% 
   select(state, county, popasian) %>% 
   head(10)
+
+midwest <- as.data.frame(ggplot2::midwest)
+ggplot(data = midwest, aes(x = poptotal, y = popasian)) +
+  geom_point() +
+  xlim(0,500000) +
+  ylim(0,10000)

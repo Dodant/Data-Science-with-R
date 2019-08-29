@@ -124,11 +124,34 @@ table(mpg$drv)
 boxplot(mpg$cty)
 boxplot(mpg$cty)$stats
 mpg$cty <- ifelse(mpg$cty < 9 | mpg$cty > 26, NA, mpg$hwy)
-mpg %>% 
-  filter(!is.na(mpg$cty))
 boxplot(mpg$cty)
 
 mpg %>% 
   filter(!is.na(mpg$cty) & !is.na(mpg$drv)) %>% 
   group_by(drv) %>% 
   summarise(mean_cty = mean(cty))
+
+
+ggplot(data = mpg, aes(x = cty, y = hwy)) +
+  geom_point()
+
+
+mpg_new <- mpg %>% 
+  filter(class == "suv") %>% 
+  group_by(manufacturer) %>% 
+  summarise(mean_cty = mean(cty)) %>% 
+  arrange(desc(mean_cty)) %>% 
+  head(5)
+
+ggplot(data = mpg_new, aes(x = reorder(manufacturer, -mean_cty), y = mean_cty)) +
+  geom_col()
+
+ggplot(data = mpg, aes(x = class)) +
+  geom_bar()
+
+
+mpg = as.data.frame(ggplot2::mpg)
+mpg_new <- mpg %>% 
+  filter(class %in% c("compact", "subcompact", "suv"))
+ggplot(data = mpg_new, aes(x = class, y = cty)) + 
+  geom_boxplot()
