@@ -79,3 +79,35 @@ mpg %>%
   filter(class == "compact") %>% 
   summarise(n = n()) %>% 
   arrange(desc(n))
+
+
+fuel <- data.frame(fl = c("c", "d", "e", "p", "r"),
+                   price_fl = c(2.35, 2.38, 2.11, 2.76, 2.22),
+                   stringsAsFactors = F)
+fuel
+
+mpg <- left_join(mpg, fuel, by = "fl")
+mpg
+
+mpg %>% 
+  select(model, fl, price_fl)
+
+
+mpg <- as.data.frame(ggplot2::mpg)
+mpg[c(65,124,131,153,212), "hwy"] <- NA
+table(is.na(mpg$drv))
+table(is.na(mpg$hwy))
+
+mpg %>% 
+  filter(!is.na(hwy)) %>% 
+  group_by(drv) %>% 
+  summarise(mean_hwy = mean(hwy))
+
+
+boxplot(mpg$hwy)$stats
+mpg$hwy <- ifelse(mpg$hwy <12 | mpg$hwy > 37, NA, mpg$hwy)
+table(is.na(mpg$hwy))
+
+mpg %>% 
+  group_by(drv) %>% 
+  summarise(mean_hwy = mean(hwy, na.rm = T))
