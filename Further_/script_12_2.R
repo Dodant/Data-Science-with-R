@@ -18,4 +18,3 @@ eco2 <- cbind(eco_a, eco_b)
 colnames(eco2) <- c("psavert", "unemploy")
 head(eco2)
 dygraph(eco2) %>% dyRangeSelector()
-s
