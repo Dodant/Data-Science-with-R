@@ -1,3 +1,4 @@
+library(dplyr)
 exam <- read.csv("csv_exam.csv")
 
 exam[]
@@ -26,6 +27,6 @@ aggregate(data=exam[exam$math >= 50 & exam$english >= 80,], tot~class, mean)
 
 exam %>% 
   filter(math >= 50 & english >= 80) %>% 
-  mutate(tot = (math + english + science)/3) %>%
+  mutate(tot = (math + english + science)/3) %>% 
   group_by(class) %>% 
   summarise(mean = mean(tot))
