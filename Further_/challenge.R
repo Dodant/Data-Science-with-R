@@ -8,3 +8,9 @@ mpg %>%
 
 mpg$avr <- (mpg$cty + mpg$hwy)/2
 aggregate(data=mpg[mpg$class == c("compact", "suv"),], avr~class, mean)
+
+
+class(mpg$drv)
+mpg$drv <- as.factor(mpg$drv)
+class(mpg$drv)
+levels(mpg$drv)
