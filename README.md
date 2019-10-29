@@ -1,6 +1,6 @@
 # Data-Science-with-R
 
-## Basic Function
+## Basic Function 
 - c() & seq()
 - head() & tail()
 - min() & max() & mean()
