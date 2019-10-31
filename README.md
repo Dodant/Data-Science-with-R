@@ -1,4 +1,4 @@
-# Data-Science-with-R
+# Data Science with R
 
 ## Basic Function 
 - c() & seq()
